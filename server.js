@@ -5,7 +5,8 @@ var PORT = 3001;
 	res.send('Hello Kumuda!');
 });*/
 
-var middleware = {
+var middleware = require('./middleware.js');
+/*var middleware = {
 	requireAuthentication : function(req , res , next) {
 		console.log('private route hit');
 		next();
@@ -14,14 +15,14 @@ var middleware = {
 		console.log('request : '+ new Date().toString() +' '+req.method + " " + req.originalUrl);
 		next();
 	}
-}
+}*/
 
 app.use(middleware.logger);
 //app.use(middleware.requireAuthentication);
 
 app.get('/about' ,middleware.requireAuthentication, function(req , res) {
 	res.send('About Us! .....');
-});
+}); 
 
 app.use(express.static(__dirname + '/public'));
 
